@@ -1,14 +1,25 @@
-import { createApp } from 'vue'
-import { createPinia } from 'pinia'
+import { createApp } from "vue";
+import { createPinia } from "pinia";
 
-import App from './App.vue'
-import router from './router'
+import App from "./App.vue";
+import router from "./router";
 
-import './assets/main.css'
+import "./assets/main.css";
+import { OhVueIcon, addIcons } from "oh-vue-icons";
+import {
+  BiFacebook,
+  BiGithub,
+  BiLinkedin,
+  FaTwitterSquare,
+} from "oh-vue-icons/icons";
 
-const app = createApp(App)
+addIcons(BiFacebook, BiGithub, BiLinkedin, FaTwitterSquare);
 
-app.use(createPinia())
-app.use(router)
+const app = createApp(App);
 
-app.mount('#app')
+app.component("v-icon", OhVueIcon);
+
+app.use(createPinia());
+app.use(router);
+
+app.mount("#app");
