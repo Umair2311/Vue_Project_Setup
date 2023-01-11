@@ -1,38 +1,71 @@
 <script lang="ts">
-interface Users{
-    id:number
-    firstName: string
-    lastName: string
-    email: string
+interface Users {
+  id: number;
+  first_name: string;
+  last_name: string;
+  email: string;
 }
 
-export default{
-    data(){
-        return {
-            listData: []
-        }
-    },
-     mounted(){
-        async function handleApi(){
-              const response =  await fetch("https://reqres.in/api/users?page=1")
-              const data = await response.json()
-              return data;
-
-          }
-    handleApi().then(res => this.listData = res.data)
+export default {
+  data() {
+    return {
+      userData: [] as Users[],
+      searchData: "",
+    };
+  },
+  mounted() {
+    async function handleApi() {
+      const response = await fetch("https://reqres.in/api/users?page=1");
+      const data = await response.json();
+      return data;
     }
-}
+    handleApi().then((res) => (this.userData = res.data));
+  },
+  methods: {
+    handleSearch() {
+      if (!this.searchData) {
+        return this.userData;
+      }
+      this.userData = this.userData.filter((user) => {
+        return (
+          user.first_name
+            .toLowerCase()
+            .includes(this.searchData.toLowerCase()) ||
+          user.last_name.toLowerCase().includes(this.searchData.toLowerCase())
+        );
+      });
+    },
+  },
+};
 </script>
 
 <template>
-    <div>
-        <div class="p-24 flex flex-wrap justify-center">
-            <div v-for="item in listData" :key="item.id" class="border-2 p-2 w-96 m-3">
-                <p>{{ item.id }}</p>
-                <h3>{{ item.first_name }}</h3>
-                <h4>{{ item.last_name }}</h4>
-                <h5>{{ item.email }}</h5>
-            </div>
-        </div>
+  <div class="p-24">
+    <div class="text-center my-4">
+      <h2 class="text-5xl">Users</h2>
+      <div class="mt-4">
+        <span class="mr-4 text-2xl">Search From:</span>
+        <input
+          class="text-black"
+          v-model="searchData"
+          @input="handleSearch"
+          placeholder="Search Name"
+        />
+      </div>
     </div>
+    <div>
+      <div class="flex flex-wrap justify-center">
+        <div
+          v-for="item in userData"
+          :key="item.id"
+          class="border-2 p-2 w-96 m-3 text-green-500 font-bold text-xl border-green-500"
+        >
+          <p>{{ item.id }}</p>
+          <h3>{{ item.first_name }}</h3>
+          <h4>{{ item.last_name }}</h4>
+          <h5>{{ item.email }}</h5>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
