@@ -80,9 +80,9 @@ const recentPosts = [
     <div class="mx-auto max-w-7xl px-6">
       <div class="flex items-center justify-between border-b-2 border-gray-100 py-1.5 md:justify-start md:space-x-10">
         <div class="flex justify-start lg:w-0 lg:flex-1">
-          <a href="#">
+          <a href="/">
             <span class="sr-only">Your Company</span>
-            <img class="h-8 w-auto sm:h-10" src="../../public/img/vue.png" alt="" />
+            <img  class="h-8 w-auto sm:h-10" src="../../public/img/vue.png" alt="" />
           </a>
         </div>
         <div class="-my-2 -mr-2 md:hidden">
@@ -123,7 +123,7 @@ const recentPosts = [
             </transition>
           </Popover>
 
-          <a href="#" class="text-base font-medium text-gray-500 hover:text-gray-900">Users</a>
+          <a href="/Users/user" class="text-base font-medium text-gray-500 hover:text-gray-900">Users</a>
           <a href="#" class="text-base font-medium text-gray-500 hover:text-gray-900">Posts</a>
 
           <Popover class="relative" v-slot="{ open }">
