@@ -204,15 +204,15 @@ const recentPosts = [
             </transition>
           </Popover>
 
-          <a
-            href="/Users/user"
+          <router-link
+            to="/Users/user"
             class="text-base font-medium text-gray-500 hover:text-gray-900"
-            >Users</a
+            >Users</router-link
           >
-          <a
-            href="/Posts/post"
+          <router-link
+            to="/Posts/post"
             class="text-base font-medium text-gray-500 hover:text-gray-900"
-            >Posts</a
+            >Posts</router-link
           >
 
           <Popover class="relative" v-slot="{ open }">
