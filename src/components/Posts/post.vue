@@ -8,6 +8,8 @@ export default {
   data() {
     return {
       postsData: [] as Posts[],
+      searchPost: "",
+      filterPosts: [] as Posts[],
     };
   },
   mounted() {
@@ -19,19 +21,51 @@ export default {
       return posts;
     }
 
-    handlePosts().then((res) => (this.postsData = res));
+    handlePosts().then((res) => {
+      this.postsData = res;
+      this.filterPosts = res;
+    });
+  },
+  methods: {
+    handleChangePosts() {
+      if (!this.searchPost) {
+        this.filterPosts = this.postsData;
+      }
+      let tempPosts = this.postsData;
+      this.filterPosts = tempPosts.filter((post) => {
+        return (
+          post.title.toLowerCase().includes(this.searchPost.toLowerCase()) ||
+          post.body.toLowerCase().includes(this.searchPost.toLowerCase())
+        );
+      });
+    },
   },
 };
 </script>
 <template>
-  <div>
-    <div class="p-24 flex flex-wrap justify-center">
+  <div class="p-24">
+    <div class="text-center my-4">
+      <h2 class="text-5xl">Posts</h2>
+      <div class="mt-4">
+        <span class="mr-4 text-2xl">Search From:</span>
+        <input
+          class="text-black"
+          v-model="searchPost"
+          @input="handleChangePosts"
+          placeholder="Search Title"
+        />
+      </div>
+    </div>
+    <div class="flex flex-wrap justify-center">
       <div
-        v-for="item in postsData"
+        v-for="item in filterPosts"
         :key="item.id"
-        class="border-2 p-2 w-96 m-3 text-emerald-500 text-xl border-emerald-500"
+        class="border-2 p-2 lg:w-96 w-full m-3 text-emerald-500 text-xl border-emerald-500"
       >
-        <p><span class="text-white font-bold">Id:</span> {{ item.id }}</p>
+        <p>
+          <span class="text-white font-bold mr-3">Id:</span>
+          <span class="text-yellow-500">{{ item.id }}</span>
+        </p>
         <h3>
           <span class="text-white font-bold">Title: </span> {{ item.title }}
         </h3>

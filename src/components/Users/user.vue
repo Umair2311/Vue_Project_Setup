@@ -21,12 +21,12 @@ export default {
     }
     handleApi().then((res) => (this.userData = res.data));
   },
-  methods: {
-    handleSearch() {
+  computed: {
+    handleSearch(): Users[] {
       if (!this.searchData) {
         return this.userData;
       }
-      this.userData = this.userData.filter((user) => {
+      return this.userData.filter((user) => {
         return (
           user.first_name
             .toLowerCase()
@@ -48,7 +48,6 @@ export default {
         <input
           class="text-black"
           v-model="searchData"
-          @input="handleSearch"
           placeholder="Search Name"
         />
       </div>
@@ -56,11 +55,11 @@ export default {
     <div>
       <div class="flex flex-wrap justify-center">
         <div
-          v-for="item in userData"
+          v-for="item in handleSearch"
           :key="item.id"
           class="border-2 p-2 w-96 m-3 text-green-500 font-bold text-xl border-green-500"
         >
-          <p>{{ item.id }}</p>
+          <p class="text-white">{{ item.id }}</p>
           <h3>{{ item.first_name }}</h3>
           <h4>{{ item.last_name }}</h4>
           <h5>{{ item.email }}</h5>
