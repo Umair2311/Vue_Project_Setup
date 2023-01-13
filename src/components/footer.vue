@@ -1,3 +1,12 @@
+<script lang="ts">
+export default {
+  methods: {
+    handleClickIcon() {
+      window.open("https://github.com/Umair2311", "_blank");
+    },
+  },
+};
+</script>
 <template>
   <footer class="bg-white shrink-0 z-10 fixed w-full bottom-0">
     <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -11,12 +20,14 @@
           class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0"
         >
           <div>
-            <v-icon
-              name="bi-github"
-              scale="1.5"
-              animation="wrench"
-              class="text-2xl mx-2 cursor-pointer hover:text-green-500 text-gray-700"
-            />
+            <v-btn @click="handleClickIcon">
+              <v-icon
+                name="bi-github"
+                scale="1.5"
+                animation="wrench"
+                class="text-2xl mx-2 cursor-pointer hover:text-green-500 text-gray-700"
+              />
+            </v-btn>
             <v-icon
               name="bi-facebook"
               scale="1.5"
