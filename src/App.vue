@@ -6,10 +6,10 @@ import LoginView from "./components/Login/login.vue";
 </script>
 
 <template>
-  <NavbarView />
+  <NavbarView v-if="$route.path != '/login'" />
   <RouterView class="h-[calc(100vh-64px)]" />
   <LoginView />
-  <FooterView />
+  <FooterView v-if="$route.path != '/login'" />
 </template>
 
 <style scoped>
