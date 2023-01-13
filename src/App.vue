@@ -1,13 +1,14 @@
 <script setup lang="ts">
-import { RouterView } from 'vue-router'
-import NavbarView from './components/navbar.vue'
-import FooterView from './components/footer.vue'
+import { RouterView } from "vue-router";
+import NavbarView from "./components/navbar.vue";
+import FooterView from "./components/footer.vue";
+import LoginView from "./components/Login/login.vue";
 </script>
-
 
 <template>
   <NavbarView />
   <RouterView class="h-[calc(100vh-64px)]" />
+  <LoginView />
   <FooterView />
 </template>
 
