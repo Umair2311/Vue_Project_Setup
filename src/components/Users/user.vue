@@ -1,9 +1,26 @@
 <script lang="ts">
 interface Users {
   id: number;
-  first_name: string;
-  last_name: string;
+  name: string;
+  username: string;
   email: string;
+  address: {
+    street: string;
+    suite: string;
+    city: string;
+    zipcode: number;
+    geo: {
+      lat: string;
+      lng: string;
+    };
+  };
+  phone: string;
+  website: string;
+  company: {
+    name: string;
+    catchPhrase: string;
+    bs: string;
+  };
 }
 
 export default {
@@ -15,11 +32,15 @@ export default {
   },
   mounted() {
     async function handleApi() {
-      const response = await fetch("https://reqres.in/api/users?page=1");
+      const response = await fetch(
+        "https://jsonplaceholder.typicode.com/users"
+      );
       const data = await response.json();
+      console.log(data, "data");
+
       return data;
     }
-    handleApi().then((res) => (this.userData = res.data));
+    handleApi().then((res) => (this.userData = res));
   },
   computed: {
     handleSearch(): Users[] {
@@ -28,10 +49,8 @@ export default {
       }
       return this.userData.filter((user) => {
         return (
-          user.first_name
-            .toLowerCase()
-            .includes(this.searchData.toLowerCase()) ||
-          user.last_name.toLowerCase().includes(this.searchData.toLowerCase())
+          user.name.toLowerCase().includes(this.searchData.toLowerCase()) ||
+          user.username.toLowerCase().includes(this.searchData.toLowerCase())
         );
       });
     },
@@ -60,8 +79,8 @@ export default {
           class="border-2 p-2 w-96 m-3 text-green-500 font-bold text-xl border-green-500"
         >
           <p class="text-white">{{ item.id }}</p>
-          <h3>{{ item.first_name }}</h3>
-          <h4>{{ item.last_name }}</h4>
+          <h3>{{ item.name }}</h3>
+          <h4>{{ item.username }}</h4>
           <h5>{{ item.email }}</h5>
         </div>
       </div>
