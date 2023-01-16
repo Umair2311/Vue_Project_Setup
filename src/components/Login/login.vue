@@ -1,3 +1,33 @@
+<script lang="ts">
+export default {
+  data() {
+    return {
+      email: "test@test.co",
+      password: "123456",
+      emailInput: "",
+      passwordInput: "",
+    };
+  },
+  methods: {
+    changeEmailInput(e: any) {
+      this.emailInput = e.target.value;
+    },
+    changePasswordInput(e: any) {
+      this.passwordInput = e.target.value;
+    },
+    login() {
+      if (
+        this.emailInput === this.email &&
+        this.passwordInput === this.password
+      ) {
+        localStorage.isLoggedIn = true;
+        this.$router.push("/");
+      }
+    },
+  },
+};
+</script>
+
 <template>
   <section class="h-screen">
     <div class="px-6 h-full text-gray-800">
@@ -95,6 +125,8 @@
                 class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                 id="exampleFormControlInput2"
                 placeholder="Email address"
+                @input="changeEmailInput"
+                v-model="emailInput"
               />
             </div>
 
@@ -105,6 +137,8 @@
                 class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                 id="exampleFormControlInput2"
                 placeholder="Password"
+                @input="changePasswordInput"
+                v-model="passwordInput"
               />
             </div>
 
@@ -125,13 +159,13 @@
             </div>
 
             <div class="text-center lg:text-left">
-              <router-link
-                to="/"
+              <button
+                @click="login"
                 type="button"
                 class="inline-block px-7 py-3 bg-green-500 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-green-500 hover:shadow-lg focus:bg-green-500 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
               >
                 Login
-              </router-link>
+              </button>
               <p class="text-sm font-semibold mt-2 pt-1 mb-0 text-white">
                 Don't have an account?
                 <a

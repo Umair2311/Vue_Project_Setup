@@ -98,6 +98,21 @@ const recentPosts = [
   { id: 3, name: "Improve your customer experience", href: "#" },
 ];
 </script>
+<script lang="ts">
+export default {
+  data() {
+    return {
+      isLoggedIn: localStorage.getItem("isLoggedIn") ?? false,
+    };
+  },
+  methods: {
+    logout() {
+      localStorage.removeItem("isLoggedIn");
+      this.$router.push("/login");
+    },
+  },
+};
+</script>
 <template>
   <Popover class="bg-white fixed w-full top-0 z-20">
     <div class="mx-auto max-w-7xl px-6">
@@ -304,7 +319,10 @@ const recentPosts = [
             </transition>
           </Popover>
         </PopoverGroup>
-        <div class="hidden items-center justify-end md:flex md:flex-1 lg:w-0">
+        <div
+          class="hidden items-center justify-end md:flex md:flex-1 lg:w-0"
+          v-if="!isLoggedIn"
+        >
           <router-link
             to="/login"
             class="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900"
@@ -316,6 +334,13 @@ const recentPosts = [
             >Sign up</a
           >
         </div>
+        <button
+          @click="logout"
+          v-else="isLoggedIn"
+          class="ml-8 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-green-500 px-4 py-2 text-base font-medium text-black shadow-sm hover:bg-green-500"
+        >
+          Logout
+        </button>
       </div>
     </div>
 
@@ -393,7 +418,7 @@ const recentPosts = [
                 >{{ item.name }}</a
               >
             </div>
-            <div>
+            <div v-if="isLoggedIn == false">
               <a
                 href="#"
                 class="flex w-full items-center justify-center rounded-md border border-transparent bg-green-500 px-4 py-2 text-base font-medium text-black shadow-sm hover:bg-green-500"
