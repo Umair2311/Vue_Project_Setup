@@ -9,12 +9,6 @@ export default {
     };
   },
   methods: {
-    changeEmailInput(e: any) {
-      this.emailInput = e.target.value;
-    },
-    changePasswordInput(e: any) {
-      this.passwordInput = e.target.value;
-    },
     login() {
       if (
         this.emailInput === this.email &&
@@ -125,7 +119,6 @@ export default {
                 class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                 id="exampleFormControlInput2"
                 placeholder="Email address"
-                @input="changeEmailInput"
                 v-model="emailInput"
               />
             </div>
@@ -137,7 +130,6 @@ export default {
                 class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                 id="exampleFormControlInput2"
                 placeholder="Password"
-                @input="changePasswordInput"
                 v-model="passwordInput"
               />
             </div>
