@@ -120,7 +120,7 @@ export default {
         class="flex items-center justify-between border-b-2 border-gray-100 py-1.5 md:justify-start md:space-x-10"
       >
         <div class="flex justify-start lg:w-0 lg:flex-1">
-          <a href="/">
+          <a href="/home">
             <span class="sr-only">Your Company</span>
             <img
               class="h-8 w-auto sm:h-10"
@@ -335,6 +335,7 @@ export default {
           >
         </div>
         <button
+          id="logoutUser"
           @click="logout"
           v-else="isLoggedIn"
           class="ml-8 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-green-500 px-4 py-2 text-base font-medium text-black shadow-sm hover:bg-green-500"

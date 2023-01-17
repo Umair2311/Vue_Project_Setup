@@ -15,7 +15,7 @@ export default {
         this.passwordInput === this.password
       ) {
         localStorage.isLoggedIn = true;
-        this.$router.push("/");
+        this.$router.push("/home");
       }
     },
   },
@@ -117,7 +117,7 @@ export default {
               <input
                 type="text"
                 class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                id="exampleFormControlInput2"
+                id="exampleFormControlInput1"
                 placeholder="Email address"
                 v-model="emailInput"
               />
@@ -153,6 +153,7 @@ export default {
             <div class="text-center lg:text-left">
               <button
                 @click="login"
+                id="loginId"
                 type="button"
                 class="inline-block px-7 py-3 bg-green-500 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-green-500 hover:shadow-lg focus:bg-green-500 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
               >
